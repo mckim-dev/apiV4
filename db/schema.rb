@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_20_185659) do
+ActiveRecord::Schema.define(version: 2021_11_11_182546) do
 
   create_table "questions", force: :cascade do |t|
     t.string "question"
@@ -18,14 +18,12 @@ ActiveRecord::Schema.define(version: 2021_10_20_185659) do
     t.string "option1"
     t.string "option2"
     t.string "option3"
-    t.string "description0"
-    t.string "description1"
-    t.string "description2"
-    t.string "description3"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
     t.string "answer"
+    t.string "hint"
+    t.string "answer_description"
   end
 
 end
