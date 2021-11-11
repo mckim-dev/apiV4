@@ -2,7 +2,9 @@ module Api
   module V1
     class QuestionsController < ApplicationController
       def index
-        render json: Question.all
+        questions = Question.all
+        
+        render json: QuestionsRepresenter.new(questions).as_json
       end
 
       def create
