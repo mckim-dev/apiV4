@@ -2,8 +2,8 @@ module Api
   module V1
     class QuestionsController < ApplicationController
       def index
-        questions = Question.all
-        
+        questions = Question.limit(params[:limit]).offset(params[:offset])
+
         render json: QuestionsRepresenter.new(questions).as_json
       end
 
@@ -11,7 +11,7 @@ module Api
         question = Question.new(question_params)
 
         if question.save
-          render json: question, status: :created 
+          render json: QuestionRepresenter.new(question).as_json, status: :created 
         else
           render json: question.errors, status: :unprocessable_entity
         end
