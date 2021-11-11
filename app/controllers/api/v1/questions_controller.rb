@@ -23,7 +23,7 @@ module Api
       private
 
       def question_params
-        params.require(:question).permit(:question, :image0, :image1, :image2, :image3, :option0, :option1, :option2, :option3, :description0, :description1, :description2, :description3, :answer0, :answer1, :answer2, :answer3) 
+        params.require(:question).permit(:question, :image, :option0, :option1, :option2, :option3, :answer, :hint, :answer_description) 
       end
     end
   end
