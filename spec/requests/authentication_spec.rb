@@ -26,5 +26,12 @@ describe 'Authentication', type: :request do
       expect(response).to have_http_status(:unprocessable_entity)
       
     end
+
+    it 'returns error when password is wrong' do
+      post '/api/v1/authenticate', params: { email: user.email, password: 'notamatch' }
+
+      expect(response).to have_http_status(:unauthorized)
+    end
+
   end
 end 
