@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_11_182546) do
+ActiveRecord::Schema.define(version: 2021_11_13_040717) do
 
   create_table "questions", force: :cascade do |t|
     t.string "question"
@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(version: 2021_11_11_182546) do
     t.string "answer"
     t.string "hint"
     t.string "answer_description"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
