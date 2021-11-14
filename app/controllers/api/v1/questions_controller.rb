@@ -1,6 +1,11 @@
 module Api
   module V1
     class QuestionsController < ApplicationController
+
+      include ActionController::HttpAuthentication::Token
+
+      before_action :authenticate_user, only: [:create, :destroy]
+
       def index
         questions = Question.limit(params[:limit]).offset(params[:offset])
 
@@ -23,6 +28,14 @@ module Api
       end
 
       private
+
+      def authenticate_user 
+        token, _options = token_and_options(request)
+        user_id = AuthenticationTokenService.decode(token)
+        User.find(user_id)
+      rescue ActiveRecord::RecordNotFound, JWT::DecodeError
+        render status: :unauthorized
+      end
 
       def question_params
         params.require(:question).permit(:question, :image, :option0, :option1, :option2, :option3, :answer, :hint, :answer_description) 

@@ -89,10 +89,14 @@ describe 'Questions API', type: :request do
     end
   end
 
-  describe 'POST /questions' do 
+  describe 'POST /questions' do     
+    let!(:user) {FactoryBot.create(:user, password: 'Password2') }
+
     it 'create new question' do 
       expect {
-        post '/api/v1/questions', params: { question: {question: 'This is a test question for Post/Create endpoint', image: 'testq.jpg', option0: 'Option0', option1: 'Option1', option2: 'Option2', option3: 'Option3', answer: 'This is the answer', hint: 'This is a hint', answer_description: 'This is the answer description'} }
+        post '/api/v1/questions', params: { 
+          question: {question: 'This is a test question for Post/Create endpoint', image: 'testq.jpg', option0: 'Option0', option1: 'Option1', option2: 'Option2', option3: 'Option3', answer: 'This is the answer', hint: 'This is a hint', answer_description: 'This is the answer description'} 
+        }, headers: { "Authorization" => "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMSJ9.M1vu6qDej7HzuSxcfbE6KAMekNUXB3EWtxwS0pg4UGg"} 
       }.to change { Question.count }.from(0).to(1)
 
       expect(response).to have_http_status(:created)
@@ -111,14 +115,24 @@ describe 'Questions API', type: :request do
         }
       )
     end
+
+    context 'missing authorization header' do
+      it 'returns a 401' do
+        post '/api/v1/questions', params: {}, headers: {}
+
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
   end
 
   describe 'DELETE /questions/:id' do 
     let!(:question) { FactoryBot.create(:question, question: 'This is a delete test question', image: 'testq.jpg', option0: 'Option0', option1: 'Option1', option2: 'Option2', option3: 'Option3', answer: 'This is the answer', hint: 'This is a hint', answer_description: 'This is the answer description') }
-    
+    let!(:user) {FactoryBot.create(:user, password: 'Password2') }
+
     it 'deletes a question' do 
       expect {
-        delete "/api/v1/questions/#{question.id}"
+        delete "/api/v1/questions/#{question.id}",
+        headers: { "Authorization" => "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMSJ9.M1vu6qDej7HzuSxcfbE6KAMekNUXB3EWtxwS0pg4UGg"} 
       }.to change { Question.count }.from(1).to(0)
 
       expect(response).to have_http_status(:no_content)
