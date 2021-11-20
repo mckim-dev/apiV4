@@ -1,4 +1,5 @@
 class Question < ApplicationRecord
+    has_one_attached :imagestorage
     validates :question, presence: true, length: { minimum: 3 }
     validates :image, presence: true
     validates :option0, presence: true, length: { minimum: 3 }
