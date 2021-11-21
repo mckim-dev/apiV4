@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'Questions API', type: :request do 
   describe 'GET /questions' do
     before do 
-      FactoryBot.create(:question, question: 'This is a test question', image: 'testq.jpg', option0: 'Option0', option1: 'Option1', option2: 'Option2', option3: 'Option3', answer: 'This is the answer', hint: 'This is a hint', answer_description: 'This is the answer description') 
-      FactoryBot.create(:question, question: 'This is a 2nd test question', image: 'testq2.jpg', option0: 'Option0', option1: 'Option1', option2: 'Option2', option3: 'Option3', answer: 'This is the 2nd answer', hint: 'This is a 2nd hint', answer_description: 'This is the 2nd answer description') 
+      FactoryBot.create(:question, question: 'This is a test question', image: 'testq.jpg', option0: 'Option0', option1: 'Option1', option2: 'Option2', option3: 'Option3', answer: 'This is the answer', hint: 'This is a hint', answer_description: 'This is the answer description', image_url: 'http://localhost:3000/assets/Angina.jpg') 
+      FactoryBot.create(:question, question: 'This is a 2nd test question', image: 'testq2.jpg', option0: 'Option0', option1: 'Option1', option2: 'Option2', option3: 'Option3', answer: 'This is the 2nd answer', hint: 'This is a 2nd hint', answer_description: 'This is the 2nd answer description', image_url: 'http://localhost:3000/assets/Psoriasis.jpg') 
     end
 
     it 'returns all questions' do 
@@ -24,7 +24,8 @@ describe 'Questions API', type: :request do
             'option3' => 'Option3',
             'hint' => 'This is a hint',
             'answer' => 'This is the answer',
-            'answer_description' => 'This is the answer description'
+            'answer_description' => 'This is the answer description',
+            'image_url' => 'http://localhost:3000/assets/Angina.jpg'
           },
           {
             'id' => 2,
@@ -36,7 +37,8 @@ describe 'Questions API', type: :request do
             'option3' => 'Option3',
             'hint' => 'This is a 2nd hint',
             'answer' => 'This is the 2nd answer',
-            'answer_description' => 'This is the 2nd answer description'
+            'answer_description' => 'This is the 2nd answer description',
+            'image_url' => 'http://localhost:3000/assets/Psoriasis.jpg'
           },
         ]
       )
@@ -59,7 +61,8 @@ describe 'Questions API', type: :request do
             'option3' => 'Option3',
             'hint' => 'This is a hint',
             'answer' => 'This is the answer',
-            'answer_description' => 'This is the answer description'
+            'answer_description' => 'This is the answer description',
+            'image_url' => 'http://localhost:3000/assets/Angina.jpg'
           }
         ]
       )
@@ -82,7 +85,8 @@ describe 'Questions API', type: :request do
             'option3' => 'Option3',
             'hint' => 'This is a 2nd hint',
             'answer' => 'This is the 2nd answer',
-            'answer_description' => 'This is the 2nd answer description'
+            'answer_description' => 'This is the 2nd answer description',
+            'image_url' => 'http://localhost:3000/assets/Psoriasis.jpg'
           }
         ]
       )
@@ -95,7 +99,7 @@ describe 'Questions API', type: :request do
     it 'create new question' do 
       expect {
         post '/api/v1/questions', params: { 
-          question: {question: 'This is a test question for Post/Create endpoint', image: 'testq.jpg', option0: 'Option0', option1: 'Option1', option2: 'Option2', option3: 'Option3', answer: 'This is the answer', hint: 'This is a hint', answer_description: 'This is the answer description'} 
+          question: {question: 'This is a test question for Post/Create endpoint', image: 'testq.jpg', option0: 'Option0', option1: 'Option1', option2: 'Option2', option3: 'Option3', answer: 'This is the answer', hint: 'This is a hint', answer_description: 'This is the answer description', image_url: 'http://localhost:3000/assets/Angina.jpg'} 
         }, headers: { "Authorization" => "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMSJ9.M1vu6qDej7HzuSxcfbE6KAMekNUXB3EWtxwS0pg4UGg"} 
       }.to change { Question.count }.from(0).to(1)
 
@@ -111,7 +115,8 @@ describe 'Questions API', type: :request do
           'option3' => 'Option3',
           'hint' => 'This is a hint',
           'answer' => 'This is the answer',
-          'answer_description' => 'This is the answer description'
+          'answer_description' => 'This is the answer description',
+          'image_url' => 'http://localhost:3000/assets/Angina.jpg'
         }
       )
     end
@@ -126,7 +131,7 @@ describe 'Questions API', type: :request do
   end
 
   describe 'DELETE /questions/:id' do 
-    let!(:question) { FactoryBot.create(:question, question: 'This is a delete test question', image: 'testq.jpg', option0: 'Option0', option1: 'Option1', option2: 'Option2', option3: 'Option3', answer: 'This is the answer', hint: 'This is a hint', answer_description: 'This is the answer description') }
+    let!(:question) { FactoryBot.create(:question, question: 'This is a delete test question', image: 'testq.jpg', option0: 'Option0', option1: 'Option1', option2: 'Option2', option3: 'Option3', answer: 'This is the answer', hint: 'This is a hint', answer_description: 'This is the answer description', image_url: 'http://localhost:3000/assets/Angina.jpg') }
     let!(:user) {FactoryBot.create(:user, password: 'Password2') }
 
     it 'deletes a question' do 

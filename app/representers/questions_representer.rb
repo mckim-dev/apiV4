@@ -16,7 +16,7 @@ class QuestionsRepresenter
         hint: question.hint,
         answer: question.answer,
         answer_description: question.answer_description,
-        imagestorage: question.get_image_url()
+        image_url: question.image_url
       }
     end
   end
