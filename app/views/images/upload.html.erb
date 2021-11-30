@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+  <%= form_for @photo do |f| %>
+    <p><%= f.label :title %>
+      <%= f.text_field :title %></p>
+    <p><%= f.label :description %>
+      <%= f.text_field :description %></p>
+    <p><%= f.label :date %>
+      <%= f.date_field :date %></p>
+    <p><%= f.label :imagestorage %>
+      <%= f.file_field :imagestorage, accept: 'image/png, image/jpeg' %></p>
+    <%= f.submit%>
+    <% end %>
+  </body>
+</html>
+
+
+
+

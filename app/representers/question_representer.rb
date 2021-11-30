@@ -14,7 +14,8 @@ class QuestionRepresenter
       option3: question.option3,
       hint: question.hint,
       answer: question.answer,
-      answer_description: question.answer_description
+      answer_description: question.answer_description,
+      image_url: question.image_url
     }
   end
     
