@@ -18,7 +18,7 @@ The application is built with a feedback system in place to help encourage a for
 
 This continues until the user has completed the assessment, at which time the application records the data for the admins to review.
 
-Below is a simple animation to help visualize the Application in action utilizing the API.
+Below is a simple animation to help visualize the Application in action utilizing the API. Click the image to see the animation.
 
 
 ![AssessmentDemo](https://user-images.githubusercontent.com/84540978/157961404-d6f617ea-3843-43e0-8657-8bc1b4dea713.gif)
